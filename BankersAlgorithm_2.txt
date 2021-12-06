@@ -1,0 +1,67 @@
+Maximum Allocator
+a,b,c,d a,b,c,d
+P0 0,2,0,2     2,3,3,8
+P1 1,3,2,2     3,5,2,5
+P2 1,2,0,1      3,4,5,1
+P3 2,1,1,1      3,2,1,3
+P4 1,0,2,0      2,3,3,1
+Determine whether each of the following states is safe using the Banker's algorithm. Show the sequence in which the processes could finish if the state is secure.Otherwise, illustrate why the
+state is unsafe . Show algorithm procedure 
+a. Available = (1, 2 , 0, 2)
+b. Available = (2, 1, 0, 2)
+It's a banker algorithm for avoiding stalemate and safely allocating resources to each computer system process. Before evaluating whether or not any process should be allocated, the 'S-State' considers all conceivable tests or activities. It also aids the operating system in effectively sharing resources among all processes. The name of the Banker's algorithm comes from the fact that it was created by a banker it determines whether or not a person should be awarded a loan amount in order to assist the bank system in safely simulating resource allocation. We'll go through the Banker's Algorithm in depth in this part. We'll also use the Banker's Algorithm to solve difficulties. To further comprehend the Banker's Algorithm, we'll look at a real-world scenario.
+Assume that the total money in a bank is 'T' and that the number of account holders in that bank is 'n'. If an account holder applies for a loan, the bank subtracts the loan amount from full cash and then estimates that the cash shortfall is more than T, allowing the loan to be approved. These measures are taken because when another individual requests for a loan or withdraws money from the bank, it assists the bank in managing and operating everything without causing any disruptions to the financial system's performance.
+It works in the same way as a computer operating system.When a new process is launched in a computer system, it must supply the operating system with a variety of information, including upcoming processes, requests for resources, counting them, and delays. The operating system determines which process sequences should be run or delayed based on these criteria, ensuring that the system does not experience a stalemate. As a result, it's also known as the operating system's deadlock avoidance algorithm or deadlock detection method.
+Advantages:
+The Banker's algorithm has the following main features:
+It has a variety of resources to satisfy the needs of each process.
+Each process should inform the operating system about impending resource requests, including the number of resources available and how long they will be held.
+It aids the operating system in managing and controlling process requests for each type of computer resource.
+The algorithm features a Max resource property, which shows that each process in a system can retain the maximum number of resources.
+Disadvantages
+It necessitates a set number of processes, and no more processes can be initiated in the system while the process is being executed.
+The algorithm no longer permits processes to trade their maximum requirements while doing their duties.
+Each process must know and specify its maximum resource requirement for the system ahead of time.
+Although a limited number of resource requests can be granted in a given amount of time, the time limit for assigning resources is one year.
+When dealing with a banker's algorithm, it asks for three pieces of information:
+What is the maximum amount that each process can request for each resource in the system? The [MAX] request indicates it.
+How much each process in a system is now holding each resource. The [ALLOCATED] resource denotes it.
+It reflects the total number of resources accessible in the system right now. The [AVAILABLE] resource indicates it.
+The following are some of the key data structures terms used in the Banker's algorithm:
+Assume n is the number of processes in a computer system, and m is the number of each type of resource.
+It is a length'm' array that defines each type of resource available in the system. When Available[j] = K, it signifies that the system has 'K' instances of Resources type R[j].
+Max: It's a [n x m] matrix that shows how many resources R[j] (each type) each process P[i] may store in a system.
+Allocation: It's a m x n order matrix that shows what kind of resources are currently allocated to each process in the system. When Allocation [i, j] = K, the system currently allocates K instances of Resources type R[j] to process P[i].
+It's a M x N matrix sequence that represents the number of resources left for each process. When Need[i] [j] = k, process P[i] may need K more instances of resource type Rj to do the task. 
+When Need[i] [j] = k, process P[i] may need K more instances of resource type Rj to do the task.  Max[i][j] - Allocation[i][j] ;
+Finish: It's an m-dimensional vector. It contains a Boolean value (true/false) indicating whether the process was assigned to the requested resources and whether all resources were released when the task was completed.
+To control processes and avoid deadlock in a system, the Banker's Algorithm combines the safety algorithm and the resource request algorithm:
+Algorithm for Safety
+In a banker's algorithm, it's a safety algorithm that checks whether a system is in a safe condition or follows the safe sequence:
+1. In a safety algorithm, there are two vectors of length m and n called Wok and Finish.
+Set up: Work = Available
+For I = 0, 1, 2, 3, 4,... n - 1, finish[i] = false.
+2. Determine the availability of each resource type [i] such as:
+Need=work[i]
+finish[i] == false 
+Go to step 4 if the I does not exist.
+3. Work = Work + Allocation(i) / to obtain a fresh resource allocation
+true if finish[i] is true
+To examine the status of resource availability for the next procedure, go to step 2.
+4. If Finish[i] == true, the system is completely secure for all processes.
+Algorithm for Requesting Resources
+When a process makes each sort of resource request in a system as a request matrix, a resource request algorithm examines how the system will behave.
+For each process P[i], let's make a resource request array R[i]. If the Resource Requesti [j] equals 'K,' the process P[i] requires the system to have 'k' instances of Resources type R[j].
+1. If the number of requested resources of each kind is less than the Need resources, go to step 2; if the condition fails, the process P[i] has claimed the resource to its utmost extent. 
+If request(i) = need, as the expression suggests
+2. If the number of requested resources of each kind is fewer than the number of available resources for each operation, go to 
+step 3. 
+ If request(i) <= available
+ as the phrase says
+Otherwise, Process P[i] will have to wait for the resource, which is now unavailable.
+3. When the process's requested resource is allotted by changing state:
+available  = available  + request
+allacation(i) = allocation(i) +  request(i)
+needi=needi-requesti
+When the resource allocation state is safe, the process P receives its resources (i). If the new state is hazardous, Process P I must wait for each type of Request R(i) before returning to the previous resource-allocation state.
+Example: Consider a system with five processes P1, P2, P3, P4, and P5, as well as three resource categories A, B, and C. The sorts of resources are as follows: There are ten examples of resource type A, five instances of resource type B, and seven occurrences of resource type C.
